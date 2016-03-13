@@ -10,7 +10,7 @@ export default class AppointmentList extends React.Component {
       appointments.push(<Appointment key={index} appointment={ appointment } />);
     });
     return(
-      <div className="appointment-list">{appointments}</div>
+      <div className="appointment-list grid">{appointments}</div>
     )
   }
 }

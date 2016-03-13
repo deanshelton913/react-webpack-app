@@ -4,6 +4,9 @@ import Classnames from "classnames";
 
 export default class Appointment extends React.Component {
   render(){
+
+
+
     let name = this.props.appointment.first + ' ' + this.props.appointment.last;
     let time = Moment(this.props.appointment.time * 1000);
     let customerClasses = Classnames({
@@ -11,7 +14,7 @@ export default class Appointment extends React.Component {
       'is-late': !(time > Moment())
     });
     return (
-      <div className={customerClasses}>{name}<span className="time">{time.calendar()}</span></div>
+      <div className={customerClasses}><span className="unit half">{name}</span><span className="time unit half">{time.calendar()}</span></div>
     );
   }
 }
