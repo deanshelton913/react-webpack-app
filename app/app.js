@@ -1,7 +1,17 @@
-import React from "react";
-import Greeting from "./greeting";
+import React from "react"
+import ReactDom from "react-dom";
+import AppointmentList from "./components/AppointmentList.jsx";
 
-React.render(
-  <Greeting name="World"/>,
-  document.body
+require("./stylesheets/app.scss")
+
+
+var APPOINTMENTS = [
+  {last: 'Jenkins', first: 'Adam', time: 1457734171 },
+  {last: 'Smith', first: 'Toby', time: 1457724171 },
+  {last: 'Shelton', first: 'Dean', time: 1457924171 },
+];
+
+ReactDom.render(
+  <AppointmentList appointments={APPOINTMENTS} />,
+  document.getElementById('app')
 );

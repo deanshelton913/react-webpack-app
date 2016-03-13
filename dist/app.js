@@ -44,19 +44,33 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/sheld027/work/webpack/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/sheld027/work/webpack/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
 	"use strict";
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _greeting = __webpack_require__(158);
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _greeting = __webpack_require__(159);
 
 	var _greeting2 = _interopRequireDefault(_greeting);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _AppointmentList = __webpack_require__(160);
 
-	_react2.default.render(_react2.default.createElement(_greeting2.default, { name: "World" }), document.body);
+	var _AppointmentList2 = _interopRequireDefault(_AppointmentList);
+
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+
+	_reactDom2.default.render(_react2.default.createElement(_greeting2.default, { name: "World" }), document.getElementById('container'));
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/sheld027/work/webpack/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 1 */
@@ -19654,6 +19668,17 @@
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	module.exports = __webpack_require__(3);
+
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/sheld027/work/webpack/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/sheld027/work/webpack/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -19664,18 +19689,76 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
 
 	exports.default = _react2.default.createClass({
 	  displayName: "greeting",
 
 	  render: function render() {
-	    return _react2.default.createElement(
+	    return _react2.default.createElement("div", { className: "greeting" }, _react2.default.createElement("h1", null, "Hello, ", this.props.name, "!"));
+	  }
+	});
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/sheld027/work/webpack/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "greeting.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _Appointment = __webpack_require__(161);
+
+	var _Appointment2 = _interopRequireDefault(_Appointment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = React.component({
+	  render: function render() {
+	    var appointments = [];
+	    this.props.appointments.forEach(function (appointment, index) {
+	      appointments.push(React.createElement(_Appointment2.default, { key: index, appointment: appointment }));
+	    });
+	    return React.createElement(
 	      "div",
-	      { className: "greeting" },
-	      "Hello, ",
-	      this.props.name,
-	      "!"
+	      { className: "appointment-list" },
+	      appointments
+	    );
+	  }
+	});
+
+/***/ },
+/* 161 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = React.Component({
+	  render: function render() {
+	    var name = this.props.appointment.first + ' ' + this.props.appointment.last;
+	    var time = moment(this.props.appointment.time * 1000);
+	    var customerClasses = classNames({
+	      'customer': true,
+	      'is-late': !(time > moment())
+	    });
+	    return React.createElement(
+	      'div',
+	      { className: customerClasses },
+	      name,
+	      React.createElement(
+	        'span',
+	        { className: 'time' },
+	        time.calendar()
+	      )
 	    );
 	  }
 	});
