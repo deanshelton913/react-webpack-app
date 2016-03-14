@@ -5,6 +5,13 @@ module.exports = {
   html: "./index.html",
 },
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['eslint'],
+        include: [__dirname, /components/],
+      }
+    ],
     loaders: [
     {
       // STYLESHEETS

@@ -1,7 +1,7 @@
-import React from "react";
-import Appointment from "./Appointment.jsx";
+import React from 'react';
+import Appointment from './Appointment.jsx';
 
-require("../stylesheets/appointment-list.scss")
+require('../stylesheets/appointment-list.scss')
 
 export default class AppointmentList extends React.Component {
   render(){
@@ -10,7 +10,7 @@ export default class AppointmentList extends React.Component {
       appointments.push(<Appointment key={index} appointment={ appointment } />);
     });
     return(
-      <div className="appointment-list grid">{appointments}</div>
+      <div className="appointment-list">{appointments}</div>
     )
   }
 }
