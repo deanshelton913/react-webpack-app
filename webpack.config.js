@@ -19,7 +19,8 @@ module.exports = {
       include: /stylesheets/,
       loaders: [
         'style',
-        'css'
+        'css',
+        'sass'
       ]
     },
     {

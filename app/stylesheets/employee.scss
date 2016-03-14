@@ -1,0 +1,23 @@
+.employee {
+  position: relative;
+  text-align: center;
+  .circle {
+    border-radius: 50%;
+    border: 1px solid #000;
+    max-width:150px;
+    width:100%;
+
+  }
+
+  p {
+    position: absolute;
+    opacity: 0.8;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.5em 0.8em;
+    color: white;
+    background-color: black;
+    position: absolute;
+  }
+}
