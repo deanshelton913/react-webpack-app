@@ -1,23 +1,25 @@
 import React from 'react';
 import Employee from './Employee.jsx';
+import AddEmployee from './AddEmployee.jsx';
+import Firebase from 'Firebase';
+import ReactFireMixin from 'reactfire';
+import reactMixin from 'react-mixin';
 
-require('../stylesheets/employee-list.scss')
+require('../stylesheets/employee-list.scss');
 
 export default class EmployeeList extends React.Component {
-
-
   constructor(props) {
     super(props);
+    this.mixins = [ReactFireMixin];
     this.state = {
-      employees: [
-        { first: 'Sam', last: 'Smith', queue: 0, image: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg' },
-        { first: 'Ken', last: 'Barneby', queue: 1, image: 'https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg' },
-        { first: 'Sarah', last: 'Fineman', queue: 2, image: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg' },
-        { first: 'Brynn', last: 'Jo', queue: 3, image: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg' }
-      ]
+      employees: []
     }
   }
 
+  componentWillMount() {
+    var ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
+    this.bindAsArray(ref, 'employees');
+  }
 
   render(){
     var employees = [];
@@ -29,7 +31,10 @@ export default class EmployeeList extends React.Component {
       <div className="employee-list grid">
         <h2>Employees</h2>
         {employees}
+        <AddEmployee />
       </div>
-    )
+    );
   }
 }
+
+reactMixin(EmployeeList.prototype, ReactFireMixin);
