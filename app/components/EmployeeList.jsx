@@ -27,7 +27,6 @@ export default class EmployeeList extends React.Component {
       employees.push(<Employee key={index} employee={ employee } />);
     });
     return(
-
       <div className="employee-list grid">
         <h2>Employees</h2>
         {employees}

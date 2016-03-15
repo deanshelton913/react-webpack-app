@@ -6,9 +6,13 @@
     border: 1px solid #000;
     max-width:150px;
     width:100%;
-
   }
 
+  button {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+  }
   p {
     position: absolute;
     opacity: 0.8;
