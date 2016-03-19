@@ -1,3 +1,16 @@
-.employee-list {
 
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
+.employee-list {
+  .employees {
+    @include clearfix;
+    white-space: nowrap;
+    float:left;
+  }
+}
+

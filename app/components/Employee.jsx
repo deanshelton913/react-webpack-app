@@ -10,7 +10,6 @@ export default class Employee extends React.Component {
 
   constructor(props) {
     super(props);
-    this.mixins = [ReactFireMixin];
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
   }
@@ -20,12 +19,10 @@ export default class Employee extends React.Component {
   }
 
   render(){
-    let firstName = this.props.employee.first;
-    let image = this.props.employee.image;
     return (
       <div className="employee unit one-fourth">
-        <img className="circle" src={image} />
-        <p>{firstName}</p>
+        <img className="circle" src={this.props.employee.image} />
+        <p>{this.props.employee.first}</p>
         <button onClick={this.deleteEmployee}>Delete</button>
       </div>
     )
