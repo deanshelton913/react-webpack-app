@@ -1,0 +1,39 @@
+/*
+* Buttons! :D
+*/
+
+@import "~hover.css/css/hover-min.css";
+
+.edit, .remove {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  padding: 5px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  font-size: 1em;
+  height: 2.3em;
+  width: 2.3em;
+  line-height: 1.2em;
+  box-shadow: 0px 0px 10px #888888;
+
+  /* Negative margins push this over later painted elements. */
+  z-index: 3;
+}
+
+.selected > .edit,
+.selected > .remove {
+  display: block;
+}
+
+.remove {
+  left:0px;
+  top:0px;
+  background-color: pink;
+}
+
+.edit {
+  right:0px;
+  top:0px;
+  background-color: lightblue;
+}
