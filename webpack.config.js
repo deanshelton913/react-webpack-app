@@ -1,5 +1,9 @@
 module.exports = {
   context: __dirname + "/app",
+  watchOptions: {
+    poll: 1000,
+    aggregateTimeout: 1000
+  },
   entry: {
     javascript: "./app.js",
     html: "./index.html",

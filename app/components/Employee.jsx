@@ -4,6 +4,7 @@ import React from 'react';
 // import reactMixin from 'react-mixin';
 import AppointmentNew from './AppointmentNew.jsx';
 import Appointment from './Appointment.jsx';
+import Faker from 'faker';
 
 require('../stylesheets/employee.scss');
 
@@ -12,7 +13,7 @@ export default class Employee extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.deleteEmployee = this.deleteEmployee.bind(this);
+    this.randomPhoto = this.randomPhoto.bind(this);
     // this.componentWillMount = this.componentWillMount.bind(this);
   }
 
@@ -20,13 +21,18 @@ export default class Employee extends React.Component {
   //   ref.child(this.props.employee['.key']).remove();
   // }
 
+  randomPhoto() {
+    var rand = Math.ceil(Math.random() * (1 - 75) + 75)
+    return 'http://api.randomuser.me/portraits/' + (rand % 2 === 0 ? 'men' : 'women') + '/' + rand + '.jpg';
+  }
+
   render(){
     return (
       <div className="col employee selected">
-        <img src="http://api.randomuser.me/portraits/women/1.jpg" width="220" height="220" className="img-responsive" alt="Generic employee thumbnail" />
+        <img src={this.randomPhoto()} width="220" height="220" className="img-responsive" alt="Generic employee thumbnail" />
         <i className="edit hvr-grow-shadow glyphicon glyphicon-pencil"></i>
         <i className="remove hvr-buzz-out glyphicon glyphicon-remove"></i>
-        <h4>Kim Lee</h4>
+        <h4>{Faker.name.firstName()} {Faker.name.lastName()}</h4>
           <div className="appointments">
             <hr/>
             <AppointmentNew />
