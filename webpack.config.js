@@ -1,9 +1,9 @@
 module.exports = {
   context: __dirname + "/app",
   entry: {
-  javascript: "./app.js",
-  html: "./index.html",
-},
+    javascript: "./app.js",
+    html: "./index.html",
+  },
   module: {
     preLoaders: [
       {

@@ -1,5 +1,6 @@
 @import "~normalize.css/normalize.css";
 @import "~hover.css/css/hover-min.css";
+@import "./vendor/datetimepicker.css";
 
 
 
@@ -93,7 +94,7 @@ body {
 /*
  * CRUD icons
  */
-.glyphicon {
+.glyphicon-edit, .glyphicon-remove {
   position: absolute;
   font-size: 1.7em;
   background-color: #CEC9C9;
@@ -153,10 +154,20 @@ body {
 /*
  * Appointments
  */
+.form-group {
+}
+.gender-label {
+  display:block;
+}
 .appointments > .well {
+  text-align: center;
   position: relative;
-  max-width:200px;
+  max-width:220px;
   white-space: normal;
+  cursor: pointer;
+  button {
+    width:100%;
+  }
   &.past {
     opacity: 0.5;
     border: 3px dashed #000;
@@ -180,11 +191,26 @@ body {
     background-size: 60px;
     background-position: 29px 0px;
   }
+  #datetime input {
+    padding:0 10px;
+  }
   .time {
     font-weight: bold;
   }
-  .glyphicon {
+  .glyphicon-edit, .glyphicon-remove {
+    display: none;
     font-size: 1em;
     top:-15px;
+  }
+  &.selected {
+    cursor: initial;
+    opacity: 0.8;
+    .glyphicon {
+      display:initial;
+    }
+  }
+  &.new {
+    cursor: initial;
+    text-align: left;
   }
 }

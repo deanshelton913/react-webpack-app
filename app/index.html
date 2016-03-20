@@ -82,18 +82,49 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Employees&nbsp;&nbsp;<button class="btn btn-success">+Add Employee</button></h1>
+          <h1 class="page-header">Employees&nbsp;&nbsp;<button class="btn btn-primary">+ Add Employee</button></h1>
           <div class="row employees">
             <div class="col employee">
               <i class="glyphicon glyphicon-edit hvr-grow-shadow"></i>
               <i class="glyphicon glyphicon-remove hvr-grow-shadow"></i>
-              <img src="http://api.randomuser.me/portraits/women/1.jpg" width="200" height="200" class="img-responsive" alt="Generic employee thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img src="http://api.randomuser.me/portraits/women/1.jpg" width="220" height="220" class="img-responsive" alt="Generic employee thumbnail">
+              <h4>Kim Lee</h4>
                 <div class="appointments">
                   <hr/>
-                  <div class="well">
-                    <button class="btn btn-success">+ New Appointment</button>
+                  <div class="well new">
+                    <form>
+                      <div class="form-group">
+                        <label for="name">Customer Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="John Smith" />
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" class="form-control" placeholder="(555) 444-5555" />
+                      </div>
+                      <div class="form-group">
+                        <label for="datetime">Date / Time</label>
+                        <div class='input-group date' id='datetime'>
+                          <input type='text' class="form-control" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="gender-label">Gender</label>
+                        <div class="radio-inline">
+                          <label for="male">
+                            <input type="radio" name="gender" id="male" value="male">Male
+                          </label>
+                        </div>
+                        <div class="radio-inline">
+                          <label for="female">
+                            <input type="radio" name="gender" id="female" value="female">
+                            Female
+                          </label>
+                        </div>
+                      </div>
+                    <button class="btn btn-success">Save Appointment</button>
                   </div>
                   <div class="well past female">
                     <i class="glyphicon hvr-grow-shadow glyphicon-edit"></i>
@@ -110,15 +141,15 @@
                 </div>
             </div>
             <div class="col employee">
-              <img src="http://api.randomuser.me/portraits/men/2.jpg" width="200" height="200" class="img-responsive" alt="Generic employee thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img src="http://api.randomuser.me/portraits/men/2.jpg" width="220" height="220" class="img-responsive" alt="Generic employee thumbnail">
+              <h4>Ken Wasserman</h4>
+
                 <div class="appointments">
                   <hr/>
                   <div class="well">
-                    <button class="btn btn-success">+ New Appointment</button>
+                    <button class="btn btn-primary">+ New Appointment</button>
                   </div>
-                  <div class="well female">
+                  <div class="well female selected">
                     <i class="glyphicon hvr-grow-shadow glyphicon-edit"></i>
                     <i class="glyphicon hvr-grow-shadow glyphicon-remove"></i>
                     <div class="time">Today at 2:47 PM</div>
@@ -139,13 +170,13 @@
                 </div>
             </div>
             <div class="col employee">
-              <img src="http://api.randomuser.me/portraits/women/3.jpg" width="200" height="200" class="img-responsive" alt="Generic employee thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img src="http://api.randomuser.me/portraits/women/3.jpg" width="220" height="220" class="img-responsive" alt="Generic employee thumbnail">
+              <h4>Lois Gerrard</h4>
+
                 <div class="appointments">
                   <hr/>
                   <div class="well">
-                    <button class="btn btn-success">+ New Appointment</button>
+                    <button class="btn btn-primary">+ New Appointment</button>
                   </div>
                   <div class="well">
                     <i class="glyphicon hvr-grow-shadow glyphicon-edit"></i>
@@ -156,19 +187,14 @@
                 </div>
             </div>
             <div class="col employee">
-              <img src="http://api.randomuser.me/portraits/men/5.jpg" width="200" height="200" class="img-responsive" alt="Generic employee thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img src="http://api.randomuser.me/portraits/men/5.jpg" width="220" height="220" class="img-responsive" alt="Generic employee thumbnail">
+              <h4>John Alberherof</h4>
+
                 <div class="appointments">
                   <hr/>
                   <div class="well">
-                    <button class="btn btn-success">+ New Appointment</button>
+                    <button class="btn btn-primary">+ New Appointment</button>
                   </div>
-                  <div class="well">Alabaster Samanji</div>
-                  <div class="well">Alabaster Samanji</div>
-                  <div class="well">Alabaster Samanji</div>
-                  <div class="well">Alabaster Samanji</div>
-                  <div class="well">Alabaster Samanji</div>
                 </div>
             </div>
           </div>
