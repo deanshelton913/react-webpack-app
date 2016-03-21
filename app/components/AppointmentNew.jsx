@@ -19,6 +19,7 @@ export default class Employee extends React.Component {
   render(){
     return (
       <div className="well new">
+        <a className="btn btn-primary add">+ Add Appointment</a>
         <form>
           <div className="form-group">
             <label>Customer Name</label>

@@ -5,11 +5,11 @@ import reactMixin from 'react-mixin';
 import Classnames from 'classnames';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
 
-require('../stylesheets/add-employee.scss');
+require('../stylesheets/employee-new.scss');
 
 const ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
 
-export default class AddEmployee extends React.Component {
+export default class EmployeeNew extends React.Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
@@ -41,8 +41,8 @@ export default class AddEmployee extends React.Component {
   render(){
 
     let classes = Classnames({
+      'employee-new': true,
       'col employee': true,
-      'add-employee': true,
       'is-open': this.state.isOpen
     });
 
@@ -67,5 +67,5 @@ export default class AddEmployee extends React.Component {
     );
   }
 }
-reactMixin(AddEmployee.prototype, ReactFireMixin);
-reactMixin(AddEmployee.prototype, LinkedStateMixin);
+reactMixin(EmployeeNew.prototype, ReactFireMixin);
+reactMixin(EmployeeNew.prototype, LinkedStateMixin);
