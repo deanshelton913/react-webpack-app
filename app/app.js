@@ -1,11 +1,9 @@
-import React from 'react'
-import ReactDom from 'react-dom';
-// import AppointmentList from './components/AppointmentList.jsx';
-import Employee from './components/Employee.jsx';
-// import moment from 'moment';
-
 import $ from 'jquery';
 import './javascripts/vendor/datetimepicker.js';
+import React from 'react'
+import ReactDom from 'react-dom';
+import EmployeeList from './components/EmployeeList.jsx';
+
 require('./stylesheets/app.scss');
 
 $(function () {
@@ -17,7 +15,4 @@ $(function () {
   );
 });
 
-ReactDom.render(
-  <div><Employee /> <Employee /> <Employee /></div>,
-  document.getElementById('employees')
-);
+ReactDom.render(<EmployeeList />, document.getElementById('employees') );

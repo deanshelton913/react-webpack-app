@@ -1,17 +1,17 @@
 import React from 'react';
+import AddEmployee from './AddEmployee.jsx';
 import Employee from './Employee.jsx';
-// import AddEmployee from './AddEmployee.jsx';
+import reactMixin from 'react-mixin';
 import Firebase from 'Firebase';
 import ReactFireMixin from 'reactfire';
-import reactMixin from 'react-mixin';
+const firebase = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
 
 require('../stylesheets/employee-list.scss');
 
 export default class EmployeeList extends React.Component {
 
   componentWillMount(){
-    var ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
-    this.bindAsArray(ref, 'employees');
+    this.bindAsArray(firebase, 'employees');
   }
 
   render(){
@@ -22,7 +22,8 @@ export default class EmployeeList extends React.Component {
 
     return(
       <div className="employee-list">
-        <div className="employees">{employees}</div>
+
+        <div className="employees"><AddEmployee />{employees}</div>
       </div>
     );
   }

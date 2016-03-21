@@ -1,0 +1,32 @@
+.employee.add-employee {
+  text-align:left;
+
+  .add-button {
+    width: 100%;
+  }
+
+  .cancel-button {
+    display: none;
+    margin-left: 1em;
+  }
+
+  form {
+    display: none;
+  }
+
+  &.is-open {
+    display: inline-table;
+
+    .add-button{
+      display: none;
+    }
+
+    .cancel-button {
+      display: inline-block;
+    }
+
+    form {
+      display: block;
+    }
+  }
+}
