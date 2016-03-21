@@ -1,19 +1,14 @@
-.employee.employee-new {
+.appointment-new {
 
   .btn {
     width: 100%;
   }
 
   form {
-    text-align:left;
     display: none;
     margin-top: 2em;
-  }
 
-  &.is-open {
-    display: inline-table;
-
-    form {
+    &.is-open {
       display: block;
     }
   }

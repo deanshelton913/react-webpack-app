@@ -14,7 +14,6 @@ export default class EmployeeNew extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
-    this.cancel = this.cancel.bind(this);
     this.defaultState = {
       isOpen: false,
       name: '',
@@ -22,10 +21,6 @@ export default class EmployeeNew extends React.Component {
       avatar: ''
     };
     this.state = this.defaultState;
-  }
-
-  cancel(){
-    this.setState(this.defaultState); // hide form
   }
 
   toggleForm(){
@@ -40,15 +35,23 @@ export default class EmployeeNew extends React.Component {
 
   render(){
 
-    let classes = Classnames({
-      'employee-new': true,
-      'col employee': true,
+    let buttonText = (this.state.isOpen ? 'Cancel' : '+ Add Employee');
+
+    let employeeClasses = Classnames({
+      'employee-new well col employee': true,
       'is-open': this.state.isOpen
     });
 
+    let buttonClasses = Classnames({
+      'add-button btn': true,
+      'btn-primary': !this.state.isOpen,
+      'btn-warning': this.state.isOpen
+    });
+
+
     return (
-      <div className={classes}>
-        <a className="btn btn-primary add-button" onClick={this.toggleForm}>+ Add Employee</a>
+      <div className={employeeClasses}>
+        <a className={buttonClasses} onClick={this.toggleForm}>{buttonText}</a>
         <form>
           <div className="form-group">
             <label>Employee Name</label>
@@ -60,7 +63,6 @@ export default class EmployeeNew extends React.Component {
           </div>
           <div className="form-group">
             <a className="btn btn-success" onClick={this.submit}>Save</a>
-            <a className="btn btn-warning cancel-button" onClick={this.cancel}>Cancel</a>
             </div>
         </form>
       </div>

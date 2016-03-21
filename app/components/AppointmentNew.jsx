@@ -1,26 +1,39 @@
 import React from 'react';
-// import Firebase from 'Firebase';
-// import ReactFireMixin from 'reactfire';
-// import reactMixin from 'react-mixin';
+import Classnames from 'classnames';
 
-require('../stylesheets/employee.scss')
+require('../stylesheets/appointment-new.scss')
 
 // const ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
 export default class Employee extends React.Component {
 
   constructor(props) {
     super(props);
+    this.toggleOpen = this.toggleOpen.bind(this);
+    this.state = {isOpen: false}
   }
 
-  // deleteEmployee(){
-  //   ref.child(this.props.employee['.key']).remove();
-  // }
+  toggleOpen(){
+    this.setState({isOpen: (this.state.isOpen ? false : true)});
+  }
 
   render(){
+    let formClasses = Classnames({
+      'is-open': this.state.isOpen
+    });
+
+    let buttonText = this.state.isOpen ? 'Cancel' : '+ New Appointment'
+
+    let buttonClasses = Classnames({
+      'btn': true,
+      'btn-primary': !this.state.isOpen,
+      'btn-warning': this.state.isOpen,
+      'add': true
+    });
+
     return (
-      <div className="well new">
-        <a className="btn btn-primary add">+ Add Appointment</a>
-        <form>
+      <div className="well new appointment-new">
+        <a className={buttonClasses} onClick={this.toggleOpen}>{buttonText}</a>
+        <form className={formClasses}>
           <div className="form-group">
             <label>Customer Name</label>
             <input type="text" id="name" className="form-control" placeholder="John Smith" />
@@ -52,8 +65,8 @@ export default class Employee extends React.Component {
               </label>
             </div>
           </div>
+          <button className="btn btn-success">Save Appointment</button>
         </form>
-      <button className="btn btn-success">Save Appointment</button>
     </div>
     )
   }

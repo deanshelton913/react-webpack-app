@@ -43,8 +43,8 @@ export default class EmployeeList extends React.Component {
     return(
       <div className="employee-list">
         <div className="employees">
-          <EmployeeNew />
           {employees}
+          <EmployeeNew />
         </div>
       </div>
     );
