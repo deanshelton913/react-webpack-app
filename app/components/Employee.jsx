@@ -1,6 +1,8 @@
 import React from 'react';
 import AppointmentNew from './AppointmentNew.jsx';
 import AppointmentList from './AppointmentList.jsx';
+import EmployeeNew from './EmployeeNew.jsx';
+import EmployeeShow from './EmployeeShow.jsx';
 import Classnames from 'classnames';
 
 require('../stylesheets/employee.scss');
@@ -9,43 +11,46 @@ export default class Employee extends React.Component {
 
   constructor(props) {
     super(props);
-    this.deleteEmployee = this.deleteEmployee.bind(this);
-    this.toggleSelection = this.toggleSelection.bind(this);
-    this.state = {isSelected: false, isBeingEdited: false}
+    this.state = { isSelected: false, isBeingEdited: false }
+
+    this.deleteEmployee = () => {
+      delete this.props.employeeList[this.props.index];
+      this.props.onChange(this.props.employeeList, this.props.index);
+    }
+
+    this.toggleEdit = () => {
+      this.setState({isBeingEdited: (this.state.isBeingEdited ? false : true)});
+    }
+
+    this.toggleSelection = () => {
+      this.setState({isSelected: (this.state.isSelected ? false : true)});
+    }
   }
 
-  deleteEmployee(){
-    delete this.props.employeeList[this.props.index];
-    this.props.onChange(this.props.employeeList, this.props.index);
-  }
-
-  toggleEdit(){
-    this.setState({isBeingEdited: (this.state.isBeingEdited ? false : true)});
-  }
-
-  toggleSelection(){
-    this.setState({isSelected: (this.state.isSelected ? false : true)});
-  }
 
   render(){
     let classes = Classnames({
       'col': true,
       'employee': true,
-      'selected': this.state.isSelected
+      'selected': this.state.isSelected,
+      'beingEdited': this.state.isBeingEdited
     });
+    let employeeView = (this.state.isBeingEdited ? <EmployeeNew
+                                                employee={this.props.employee}
+                                                toggleSelection={this.toggleSelection}
+                                                toggleEdit={this.toggleEdit}
+                                                deleteEmployee={this.deleteEmployee}
+                                              /> : <EmployeeShow
+                                                employee={this.props.employee}
+                                                toggleSelection={this.toggleSelection}
+                                                toggleEdit={this.toggleEdit}
+                                                deleteEmployee={this.deleteEmployee}
+                                              />
+                        );
 
     return (
       <div className={classes}>
-        <img
-          onClick={this.toggleSelection}
-          src={this.props.employee.avatar}
-          width="220"
-          height="220"
-          className="img-responsive"
-          alt="Generic employee thumbnail" />
-        <i className="edit hvr-grow-shadow glyphicon glyphicon-pencil" onClick={this.toggleEdit}></i>
-        <i className="remove hvr-buzz-out glyphicon glyphicon-remove" onClick={this.deleteEmployee}></i>
-        <h4>{this.props.employee.name}</h4>
+          {employeeView}
           <div className="appointments">
             <hr/>
             <AppointmentNew />
@@ -55,4 +60,6 @@ export default class Employee extends React.Component {
     )
   }
 }
+
+
 // reactMixin(Employee.prototype, ReactFireMixin);

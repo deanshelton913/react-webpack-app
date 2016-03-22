@@ -12,46 +12,45 @@ const ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees'
 export default class EmployeeNew extends React.Component {
   constructor(props) {
     super(props);
-    this.submit = this.submit.bind(this);
-    this.toggleForm = this.toggleForm.bind(this);
+
     this.defaultState = {
       isOpen: false,
       name: '',
       appointments: [],
       avatar: ''
     };
-    this.state = this.defaultState;
-  }
 
-  toggleForm(){
-    this.setState({isOpen: this.state.isOpen ? false : true});
-  }
+    this.state = this.props.employee || this.defaultState;
 
-  submit(){
-    delete this.state.isOpen;
-    ref.push(this.state); // update firebase
-    this.setState(this.defaultState); // hide form
+    this.toggleForm = () => {
+      this.setState({isOpen: this.state.isOpen ? false : true});
+    }
+
+    this.submit = () => {
+      delete this.state.isOpen;
+      ref.push(this.state); // update firebase
+      this.setState(this.defaultState); // hide form
+    }
   }
 
   render(){
-
-    let buttonText = (this.state.isOpen ? 'Cancel' : '+ Add Employee');
-
-    let employeeClasses = Classnames({
-      'employee-new well col employee': true,
-      'is-open': this.state.isOpen
+    let employeeNewClasses = Classnames({
+      'employee-new col employee well': true,
+      'is-open': this.state.isOpen || this.props.employee
     });
 
     let buttonClasses = Classnames({
-      'add-button btn': true,
+      'btn add-button': true,
       'btn-primary': !this.state.isOpen,
-      'btn-warning': this.state.isOpen
+      'btn-warning': this.state.isOpen || this.props.employee
     });
 
 
+    let buttonText = (this.state.isOpen || this.props.employee ? 'Cancel' : '+ Add Employee');
+
     return (
-      <div className={employeeClasses}>
-        <a className={buttonClasses} onClick={this.toggleForm}>{buttonText}</a>
+      <div className={employeeNewClasses}>
+        <a className={buttonClasses} onClick={this.props.toggleEdit || this.toggleForm}>{buttonText}</a>
         <form>
           <div className="form-group">
             <label>Employee Name</label>

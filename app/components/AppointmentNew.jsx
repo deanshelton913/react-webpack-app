@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import '../javascripts/vendor/datetimepicker.js';
 import React from 'react';
 import Classnames from 'classnames';
 
@@ -28,6 +30,15 @@ export default class Employee extends React.Component {
       'btn-primary': !this.state.isOpen,
       'btn-warning': this.state.isOpen,
       'add': true
+    });
+
+    $(function () {
+      $('.js-datetime').datetimepicker(
+        {
+          daysOfWeekDisabled: [0, 6],
+          format: 'MM/DD/YY h:mm a'
+        }
+      );
     });
 
     return (

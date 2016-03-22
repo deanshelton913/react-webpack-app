@@ -7,16 +7,25 @@
   text-align: center;
   white-space: nowrap;
 }
+
 .employees h4 {
   margin-bottom: 0;
 }
+
 .employee {
   position:relative;
   float:none;
   display:inline-table;
   margin-bottom: 20px;
   margin-right: 1em;
+  width: 220px;
 }
+
+.selected.employee img {
+  border: 10px dotted #ECECEC;
+  opacity: 0.6;
+}
+
 .employee img {
   border: 10px solid #FFF;
   display: inline-block;
