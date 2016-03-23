@@ -12,31 +12,19 @@ export default class EmployeeList extends React.Component {
 
   constructor(){
     super();
-    this.update = this.update.bind(this);
   }
 
-  componentWillMount(){
+  componentWillMount (){
     this.bindAsArray(firebase, 'employees');
-
   }
-
-  update(employees, index){
-    this.setState({employees: employees});
-    const x = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees/' + index);
-    x.remove();
-  }
-
 
   render(){
     var employees = [];
     this.state.employees.forEach((employee) => {
-      let singleEmployee =  <Employee
-                        key={employee['.key']}
-                        index={employee['.key']}
-                        employee={employee}
-                        employeeList={this.state.employees}
-                        onChange={this.update}
-                      />
+      let singleEmployee = <Employee
+                            key={employee['.key']}
+                            employee={employee}
+                          />
       employees.push(singleEmployee);
     });
 

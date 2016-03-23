@@ -3,8 +3,8 @@ import Firebase from 'Firebase';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 import Classnames from 'classnames';
-import LinkedStateMixin from 'react-addons-linked-state-mixin'
-
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import _ from 'underscore';
 require('../stylesheets/employee-new.scss');
 
 const ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
@@ -13,44 +13,56 @@ export default class EmployeeNew extends React.Component {
   constructor(props) {
     super(props);
 
-    this.defaultState = {
-      isOpen: false,
+    let defaults = {
+      isOpen: this.props.isOpen || false,
       name: '',
       appointments: [],
       avatar: ''
     };
+    this.defaultState = _.extend(defaults, this.props.employee);
+    this.state = this.defaultState;
 
-    this.state = this.props.employee || this.defaultState;
+    this.cancel = () => {
+      this.setState(this.defaultState); // hide form
+    }
 
     this.toggleForm = () => {
-      this.setState({isOpen: this.state.isOpen ? false : true});
+      this.props.beingUpdated ? this.props.handleToggleEmployeeEdit() : this.setState({isOpen: this.state.isOpen ? false : true});
+    }
+
+    this.update = () => {
+      ref.child(this.state['.key']).update(_.omit(this.state,'.key'));
+      this.props.handleToggleEmployeeEdit();
+      this.props.handleToggleEmployeeSelection();
+    }
+
+    this.add = () => {
+      ref.push(this.state); // update firebase
+      this.setState(this.defaultState); // hide form
     }
 
     this.submit = () => {
-      delete this.state.isOpen;
-      ref.push(this.state); // update firebase
-      this.setState(this.defaultState); // hide form
+      (this.state['.key'] ? this.update() : this.add());
     }
   }
 
   render(){
-    let employeeNewClasses = Classnames({
-      'employee-new col employee well': true,
-      'is-open': this.state.isOpen || this.props.employee
+    let classes = Classnames({
+      'well employee-new col employee': true,
+      'is-open': this.state.isOpen
     });
 
-    let buttonClasses = Classnames({
+    let btnClasses = Classnames({
       'btn add-button': true,
       'btn-primary': !this.state.isOpen,
-      'btn-warning': this.state.isOpen || this.props.employee
+      'btn-warning': this.state.isOpen
     });
 
-
-    let buttonText = (this.state.isOpen || this.props.employee ? 'Cancel' : '+ Add Employee');
+    var btnText = (this.state.isOpen ? 'Cancel' : '+ Add Employee')
 
     return (
-      <div className={employeeNewClasses}>
-        <a className={buttonClasses} onClick={this.props.toggleEdit || this.toggleForm}>{buttonText}</a>
+      <div className={classes}>
+        <a className={btnClasses} onClick={this.toggleForm}>{btnText}</a>
         <form>
           <div className="form-group">
             <label>Employee Name</label>
