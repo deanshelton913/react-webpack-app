@@ -6,17 +6,35 @@ import Classnames from 'classnames';
 require('../stylesheets/appointment-new.scss')
 
 // const ref = new Firebase('https://glaring-inferno-7699.firebaseio.com/employees');
-export default class Employee extends React.Component {
+export default class AppointmentNew extends React.Component {
 
   constructor(props) {
     super(props);
     this.toggleOpen = this.toggleOpen.bind(this);
     this.state = {isOpen: false}
+
+    this.add = () => {
+      // ref.push(this.state); // update firebase
+      this.setState({isOpen: false}); // hide form
+    }
+
+    this.handleSubmit = () => {
+      // (this.state['.key'] ? this.update() : this.add());
+      this.add();
+    }
   }
 
   toggleOpen(){
     this.setState({isOpen: (this.state.isOpen ? false : true)});
   }
+
+  // this.update = () => {
+  //   ref.child(this.state['.key']).update(_.omit(this.state,'.key'));
+  //   this.props.handleToggleEmployeeEdit();
+  //   this.props.handleToggleEmployeeSelection();
+  // }
+
+
 
   render(){
     let formClasses = Classnames({
@@ -24,7 +42,6 @@ export default class Employee extends React.Component {
     });
 
     let buttonText = this.state.isOpen ? 'Cancel' : '+ New Appointment'
-
     let buttonClasses = Classnames({
       'btn': true,
       'btn-primary': !this.state.isOpen,
@@ -76,7 +93,7 @@ export default class Employee extends React.Component {
               </label>
             </div>
           </div>
-          <button className="btn btn-success">Save Appointment</button>
+          <button className="btn btn-success" onClick={this.handleSubmit}>Save Appointment</button>
         </form>
     </div>
     )
